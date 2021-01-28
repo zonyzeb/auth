@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use \App\Events\StoreUserActivity;
+use \App\Events\ActivityLoggerEvent;
 
 class LoginRequest extends FormRequest
 {
@@ -56,7 +56,7 @@ class LoginRequest extends FormRequest
 
         $user = Auth::user();
 
-        event(new StoreUserActivity($user, 'login'));
+        event(new ActivityLoggerEvent($user, 'login'));
 
         RateLimiter::clear($this->throttleKey());
     }

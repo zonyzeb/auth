@@ -9,7 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use \App\Events\StoreUserActivity;
+use \App\Events\ActivityLoggerEvent;
 
 class RegisteredUserController extends Controller
 {
@@ -49,8 +49,8 @@ class RegisteredUserController extends Controller
 
 
         event(new Registered($user));
-        event(new StoreUserActivity($user, 'register'));
-        event(new StoreUserActivity($user, 'login'));
+        event(new ActivityLoggerEvent($user, 'register'));
+        event(new ActivityLoggerEvent($user, 'login'));
 
         return redirect(RouteServiceProvider::HOME);
     }

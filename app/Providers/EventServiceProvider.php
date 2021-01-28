@@ -22,6 +22,11 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\UserActivity::class => [
             \App\Listeners\UserActivity::class,
         ],
+
+        \App\Events\ActivityLoggerEvent::class => [
+            \App\Listeners\ActivityLoggerListener::class,
+        ],
+
     ];
 
     /**
