@@ -52,7 +52,7 @@ RUN cd /var/www && mkdir storage/framework && cd storage/framework && mkdir sess
 
 # Project Setup 
 RUN cd /var/www \
-    && mkdir storage/framework && cd storage/framework && mkdir sessions views cache \
+    && mkdir -p storage/framework && cd storage/framework && mkdir -p sessions views cache \
     && chmod -R 755 storage \
     && cp .env.example .env \
     && composer install \
