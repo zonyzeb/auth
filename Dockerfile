@@ -47,6 +47,20 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 
+#Create Storage Folder
+RUN cd /var/www && mkdir storage/framework && cd storage/framework && mkdir sessions views cache
+
+# Project Setup 
+RUN cd /var/www \
+    && mkdir storage/framework && cd storage/framework && mkdir sessions views cache \
+    && chmod -R 755 storage \
+    && cp .env.example .env \
+    && composer install \
+    && php artisan key:generate \
+    && php artisan migrate \
+    && php artisan passport:install
+
+
 # Change current user to www
 USER www
 
