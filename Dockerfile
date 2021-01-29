@@ -54,9 +54,9 @@ RUN cd /var/www \
     && chmod -R 755 storage \
     && cp .env.example .env \
     && composer install \
-    && php artisan migrate \
-    && php artisan key:generate \
-    && php artisan passport:install
+#    && php artisan migrate \
+#    && php artisan key:generate \
+#    && php artisan passport:install
 
 
 # Change current user to www
