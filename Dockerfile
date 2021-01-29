@@ -48,12 +48,12 @@ COPY . /var/www
 COPY --chown=www:www . /var/www
 
 # Project Setup 
-RUN cd /var/www \
-    && rm -rf storage/ \
-    && mkdir -p storage/framework && cd storage/framework && mkdir -p sessions views cache && cd ../../ \
-    && chmod -R 755 storage \
-    && cp .env.example .env \
-    && composer install 
+#RUN cd /var/www \
+#    && rm -rf storage/ \
+#    && mkdir -p storage/framework && cd storage/framework && mkdir -p sessions views cache && cd ../../ \
+#    && chmod -R 755 storage \
+#    && cp .env.example .env \
+#    && composer install 
 #    && php artisan migrate \
 #    && php artisan key:generate \
 #    && php artisan passport:install
@@ -66,4 +66,5 @@ RUN chmod 0777 /var/www/build/php/docker-app-entrypoint.sh
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
+ENTRYPOINT  ["/var/www/build/php/docker-app-entrypoint.sh"]
 #CMD ["php-fpm"]
