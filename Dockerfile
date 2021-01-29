@@ -49,7 +49,7 @@ COPY --chown=www:www . /var/www
 
 # Project Setup 
 RUN cd /var/www \
-    && rm -rf storage/
+    && rm -rf storage/ \
     && mkdir -p storage/framework && cd storage/framework && mkdir -p sessions views cache && cd ../../ \
     && chmod -R 755 storage \
     && cp .env.example .env \
