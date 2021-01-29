@@ -149,6 +149,7 @@
                 selectedRows: [],
 
                 open: false,
+                responsive: true,
                 
                 toggleColumn(key) {
                     // Note: All td must have the same class name as the headings key! 

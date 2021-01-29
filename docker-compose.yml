@@ -54,6 +54,21 @@ services:
     networks:
       - app-network
 
+  #PhpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    tty: true
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: auth_@pP
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
   #Redis Service
   redis:
     image: redis:6.0.10

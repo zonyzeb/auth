@@ -12,22 +12,30 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+            <!-- First Name -->
             <div>
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="firstname" :value="__('First Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+            </div>
+            <!-- Last Name -->
+            <div>
+                <x-label for="lastname" :value="__('Last Name')" />
 
-                @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                <x-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required />
+            </div>
+            <!-- Username -->
+            <div>
+                <x-label for="username" :value="__('User Name')" />
+
+                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
             </div>
 
             <!-- Password -->
@@ -38,9 +46,6 @@
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
-                @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
             </div>
 
             <!-- Confirm Password -->
