@@ -47,9 +47,6 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 
-#Create Storage Folder
-RUN cd /var/www && mkdir storage/framework && cd storage/framework && mkdir sessions views cache
-
 # Project Setup 
 RUN cd /var/www \
     && mkdir -p storage/framework && cd storage/framework && mkdir -p sessions views cache \
