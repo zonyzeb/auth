@@ -62,6 +62,8 @@ RUN cd /var/www \
 # Change current user to www
 USER www
 
+RUN chmod 0777 /var/www/docker-app-entrypoint.sh
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 #CMD ["php-fpm"]
