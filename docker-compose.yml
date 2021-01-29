@@ -1,6 +1,25 @@
 version: '3'
 services:
 
+  #MySQL Service
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: auth_app
+      MYSQL_ROOT_PASSWORD: auth_@pP
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./build/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+      
   #PHP Service
   app:
     build:
@@ -32,25 +51,6 @@ services:
     volumes:
       - ./:/var/www
       - ./build/nginx/conf.d/:/etc/nginx/conf.d/
-    networks:
-      - app-network
-
-  #MySQL Service
-  db:
-    image: mysql:5.7.22
-    container_name: db
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: auth_app
-      MYSQL_ROOT_PASSWORD: auth_@pP
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
-    volumes:
-      - dbdata:/var/lib/mysql
-      - ./build/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
 
