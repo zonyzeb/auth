@@ -19,7 +19,7 @@ services:
       - ./build/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
-      
+
   #PHP Service
   app:
     build:
@@ -38,6 +38,7 @@ services:
        - ./build/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
+    entrypoint: "/var/www/build/php/docker-app-entrypoint.sh"
 
   #Nginx Service
   webserver:
