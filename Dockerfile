@@ -53,7 +53,7 @@ RUN cd /var/www \
     && mkdir -p storage/framework && cd storage/framework && mkdir -p sessions views cache && cd ../../ \
     && chmod -R 755 storage \
     && cp .env.example .env \
-    && composer install \
+    && composer install 
 #    && php artisan migrate \
 #    && php artisan key:generate \
 #    && php artisan passport:install
