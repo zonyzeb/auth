@@ -35,6 +35,9 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+                        <x-dropdown-link :href="route('profile')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -66,6 +69,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                    {{ __('Profile') }}
+                </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -78,13 +84,16 @@
                 </div>
 
                 <div class="ml-3">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <!-- <x-nav-link :href="route('profile')"> -->
+                        <div class="font-medium text-base text-gray-800">{{ Auth::user()->firstname. ' ' . Auth::user()->lastname}}</div>
+                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <!-- </x-nav-link> -->
                 </div>
             </div>
 
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->
+                
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 

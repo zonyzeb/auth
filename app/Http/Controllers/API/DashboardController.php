@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,20 +23,17 @@ class DashboardController extends Controller
         $userActivity = [];
 
         if(($activities))
-            foreach ($activities as $id => $activity) {
-                
-                $userActivity[] = [
-                    'action' => $activity->action,
-                    'time' => $activity->time,
-                    'msg' => str_replace('_', ' ', $activity->action),
-                ] ;
-            }
+	        foreach ($activities as $id => $activity) {
+	            
+	            $userActivity[] = [
+	                'action' => $activity->action,
+	                'time' => $activity->time,
+	                'msg' => str_replace('_', ' ', $activity->action),
+	            ] ;
+	        }
 
         $userActivity = array_reverse($userActivity);
 
-        return view('dashboard.activity' , [
-            'activitiesJson'=> json_encode($userActivity),
-            'activities'=> $userActivity, 
-        ]);
+        return response(['activities' => $userActivity], 201);
     }
 }

@@ -24,7 +24,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create(['password' => bcrypt($password)]);
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'username' => $user->username,
             'password' => $password,
         ]);
 
@@ -37,7 +37,7 @@ class AuthenticationTest extends TestCase
         $user = User::factory()->create();
 
         $this->post('/login', [
-            'email' => $user->email,
+            'username' => $user->email,
             'password' => 'my-wrong-password',
         ]);
 

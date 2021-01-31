@@ -53,8 +53,8 @@ class RegisteredUserController extends Controller
 
 
         event(new Registered($user));
-        event(new ActivityLoggerEvent($user, 'register'));
-        event(new ActivityLoggerEvent($user, 'login'));
+        event(new ActivityLoggerEvent($user, 'web_registration'));
+        event(new ActivityLoggerEvent($user, 'web_login'));
 
         return redirect(RouteServiceProvider::HOME);
     }

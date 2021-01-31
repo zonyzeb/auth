@@ -52,7 +52,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        event(new ActivityLoggerEvent($user, 'logout'));
+        event(new ActivityLoggerEvent($user, 'web_logout'));
 
         return redirect('/');
     }

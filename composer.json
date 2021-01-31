@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "auth/module",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Auth Module Project",
     "keywords": [
         "framework",
         "laravel"

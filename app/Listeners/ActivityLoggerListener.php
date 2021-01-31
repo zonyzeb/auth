@@ -38,6 +38,9 @@ class ActivityLoggerListener
 
         $value = ['action' => $action ,'time' => $currentTimestamp];
 
+        if(strpos($action, 'registration') !== false)
+            Redis::del($key);
+
         $currentValue = json_decode(Redis::get($key), true);
 
         $currentValue[] = $value;

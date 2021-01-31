@@ -1,62 +1,101 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About Auth Module Project
 
-## About Laravel
+Auth Module is a docker containerized responsive web application built using Laravel Framework. Auth package supports web and api based access to the system. Following are the functionalities the system supports:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Login](http://localhost/login).
+- [Register](http://localhost/register).
+- [Activity List](http://localhost/dashboard).
+- [User Profile](http://localhost/profile).
+- [API Login](http://localhost/api/login).
+- [API Register](http://localhost/register).
+- [API User](http://localhost/user).
+- [API Activity List](http://localhost/api/activity).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Application Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The Application uses PHP, MySQL, Redis and Laravel Framework.
 
-## Learning Laravel
+- [Nginx Webserver](https://www.nginx.com/)
+- [PHP 7.3](https://www.php.net/)
+- [MySQL 5.7](https://www.mysql.com/)
+- [Redis 6.0](https://redis.io/)
+- [Laravel Framework 8.X](https://laravel.com/)
+- [PhpMyAdmin](https://www.phpmyadmin.net/)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Application Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The application can be installed on local or remote servers by using the following steps. 
 
-## Laravel Sponsors
+1. Install Docker on the system, if you already installed Docker on the system you can skip this step. Otherwise, you can follow the docker installation steps mentioned in the [official documentation](https://docs.docker.com/engine/install/).
+2. [Install docker compose](https://docs.docker.com/compose/install/) on you the system, skip this step if it's already installed in your system.
+3. Check out the soure code, `git clone git@github.com:zonyzeb/auth.git` or `git clone https://github.com/zonyzeb/auth.git`.
+4. Get into the source directory, `cd auth`.
+5. Build the docker images for the project, `docker-compose build`.
+6. Start the docker images to run the application, `docker-compose up`. Run the command, `docker-compose up -d` if you want to run the process on the background.
+7. Load the url on your favorite browser, [http://localhost](http://localhost).
+8. Now you can access different pages using below links:
+    1. [Login](http://localhost/login).
+    2. [Register](http://localhost/register).
+    3. [Activity Board](http://localhost/dashboard).
+9. API URLs can be accessed using below endpoints. If you have [Postman](https://www.postman.com) installed in your system, you can load the postman script from [the url](https://www.getpostman.com/collections/3e19ea3b93196b36f5bd) and test the APIs. 
+    1. [API Login](http://localhost/api/login).
+    2. [API Register](http://localhost/register).
+    3. [API USer](http://localhost/api/user).
+    4. [API Activity List](http://localhost/api/activity).
+10. PhpMyAdmin server can accessed through, [localhost:8080](http://localhost:8080).
+11. Run the test cases, `docker-compose exec app php artisan test`.
+12. Laravel cli commands can be run by executing the command, `docker-compose exec app php artisan <COMMANDS>`. Otherwise you can enter in side the contatiner(`docker-compose exec app bash`) and execute the commanda directly inside the container. 
+13. To shutdown the application use `docker-compose down` command
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Docker Containers
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+The appliation is using different docker images and containers. Docker configuration details can be found on **docker-compose.yml** file. You can access different docker containers as mentioned below,
+1. Nginx Server
+    - `docker-compose exec webserver bash`
+2. PHP App
+    - `docker-compose exec app bash`
+3. MySQL Server
+    - `docker-compose exec db bash`
+4.  Redis Server
+    - `docker-compose exec redis bash`
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Persistent Database
 
-## Code of Conduct
+The application databases(MySQL and Redis) are persistent, meaning even if the container is terminated the data will be available. The persistent database setup can be altered in the `docker-compose.yml` file. Also the data files can be found in the docker directory. 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Accessing database
 
-## Security Vulnerabilities
+1. MySQL Database.
+    - MySQL database can be directly accessed using PhpMyAdmin container available on port 8080, [MySql DB](localhost:8080). 
+    - Or it can be accessed through docker container, `docker-compose exec db bash`.
+2. Redis Database.
+    - Redis database can be accessed through docker container, `docker-compose exec redis bash`.
+        - List all keys in redis database:
+            - `rediscli`
+            - `keys *`
+        - Get a key value from redis database,
+            - `get <key>`
+        - Delete a key from redis database,
+            - `del <key>`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Logs
 
-## License
+The application logs can be followed by the below commands,
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    - `docker-compose logs --follow app`
+
+### Test Cases
+
+Application testcases can be found under test folder. You can run the test case by issuing the following command,
+
+    - `docker-compose exec app php artisan test`
+
+
+
+
+
+    
+

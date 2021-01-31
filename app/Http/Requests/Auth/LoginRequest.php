@@ -56,7 +56,7 @@ class LoginRequest extends FormRequest
 
         $user = Auth::user();
 
-        event(new ActivityLoggerEvent($user, 'login'));
+        event(new ActivityLoggerEvent($user, 'web_login'));
 
         RateLimiter::clear($this->throttleKey());
     }

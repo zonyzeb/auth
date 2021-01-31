@@ -15,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
-Route::get('/dashboard', \App\Http\Controllers\Dashboard\DashboardController::class)
-	->middleware(['auth'])
-	->name('dashboard');
+// Route::get('/dashboard', \App\Http\Controllers\Dashboard\DashboardController::class)
+// 	->middleware(['auth'])
+// 	->name('dashboard');
+
+Route::Group(['middleware'=>'auth'], function(){
+	Route::get('/dashboard', \App\Http\Controllers\Dashboard\DashboardController::class)->name('dashboard');
+	Route::get('/profile', function(){
+		return view('auth.profile');
+	})->name('profile');
+});
 
 require __DIR__.'/auth.php';

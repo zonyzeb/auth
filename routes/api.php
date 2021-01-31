@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,13 @@ use App\Http\Controllers\API\AuthController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-// Route::apiResource('acitivity-log', ProjectController::class)->middleware('auth:api');
+Route::Group(['middleware'=>'auth:api'], function(){
+	Route::get('/user', function (Request $request) {
+    	return $request->user();
+	});
+	Route::get('/activity', 'App\Http\Controllers\API\DashboardController@__invoke');
+});
+
